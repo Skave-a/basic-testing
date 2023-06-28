@@ -13,7 +13,6 @@ const testCases = [
 ];
 
 describe('simpleCalculator', () => {
-
   test.each(testCases)(
     'should return the correct result',
     ({ a, b, action, expected }) => {
