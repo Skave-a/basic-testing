@@ -1,3 +1,4 @@
+import lodash from 'lodash';
 import { getBankAccount } from '.';
 
 const initialBalance = 1000;
@@ -50,18 +51,26 @@ describe('BankAccount', () => {
   });
 
   test('fetchBalance should return number in case if request did not failed', async () => {
-    const balance = await account.fetchBalance();
+    jest.spyOn(lodash, 'random').mockImplementation(() => 1);
+    const account3 = getBankAccount(0);
+
+    const balance = await account3.fetchBalance();
 
     expect(typeof balance).toBe('number');
   });
 
   test('should set new balance if fetchBalance returned number', async () => {
-    await account2.synchronizeBalance();
+    jest.spyOn(lodash, 'random').mockImplementation(() => 1);
+    const account3 = getBankAccount(0);
 
-    expect(account2.getBalance()).not.toBe(initialBalance);
+    await account3.synchronizeBalance();
+
+    expect(account3.getBalance()).not.toBe(initialBalance);
   });
 
   test('should throw SynchronizationFailedError if fetchBalance returned null', async () => {
+    jest.spyOn(lodash, 'random').mockImplementation(() => 0);
+
     await expect(account2.synchronizeBalance()).rejects.toThrow(
       'Synchronization failed',
     );
