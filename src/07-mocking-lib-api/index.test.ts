@@ -1,5 +1,5 @@
-import axios, { AxiosInstance } from 'axios';
-import { throttledGetDataFromApi } from './index'; 
+import axios from 'axios';
+// import { throttledGetDataFromApi } from './index'; 
 
 jest.mock('axios');
 
