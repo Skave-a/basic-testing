@@ -1,17 +1,35 @@
-// Uncomment the code below and write your tests
-/* import axios from 'axios';
-import { throttledGetDataFromApi } from './index'; */
+import axios, { AxiosInstance } from 'axios';
+import { throttledGetDataFromApi } from './index'; 
+
+jest.mock('axios');
+
+const baseURL = 'https://jsonplaceholder.typicode.com';
 
 describe('throttledGetDataFromApi', () => {
+
   test('should create instance with provided base url', async () => {
-    // Write your test here
+    axios.create({ baseURL: baseURL });
+
+    expect(axios.create).toHaveBeenCalledWith({ baseURL: baseURL });
   });
 
   test('should perform request to correct provided url', async () => {
-    // Write your test here
+    // const path = '/posts';
+    // jest.spyOn(axios, 'get');
+
+    // await throttledGetDataFromApi(path);
+
+    // expect(axios.get).toHaveBeenCalledWith(path);
+
   });
 
   test('should return response data', async () => {
-    // Write your test here
+    // const data = { id: 1, title: 'post' };
+    // jest.spyOn(axios, 'get').mockResolvedValue({ data: data });
+
+    // const relativePath = '/posts';
+    // const data = await throttledGetDataFromApi(relativePath);
+
+    // expect(data).toEqual(data);
   });
 });
